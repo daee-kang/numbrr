@@ -1,16 +1,22 @@
 export default class GameLogic {
+  /*
+  we really don't have to hold state and members here, the game is 
+  pretty simple that we can just hold state in the components but 
+  handle SOME functionality here, this is more of just a helper
+  class in a way B-)
+  */
   static MAX_GENERATE = 500;
-  numbers: number[];
 
   constructor() {
-    this.numbers = [];
     this.generateNumbers();
   }
 
   generateNumbers = () => {
+    let numbers: number[] = []
     for (let i = 0; i < GameLogic.MAX_GENERATE; i++) {
-      this.numbers.push(Math.floor(Math.random() * 10));
+      numbers.push(Math.floor(Math.random() * 10));
     }
+    return numbers;
   };
 
   getAccuracy = (correct: number, incorrect: number) => {

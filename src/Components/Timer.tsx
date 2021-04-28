@@ -6,9 +6,10 @@ interface Props {
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
   gameStart: boolean;
   setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
+  style?: React.CSSProperties
 }
 
-export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart }: Props) => {
+export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart, style }: Props) => {
 
   useEffect(() => {
     //https://stackoverflow.com/questions/57137094/implementing-a-countdown-timer-in-react-with-hooks
@@ -33,6 +34,6 @@ export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart }: Props)
   }, [timeLeft, gameStart]);
 
   return (
-    <span style={{ fontSize: "2rem", color: "#2b2d42" }}>{timeLeft}</span>
+    <span style={style}>{timeLeft}</span>
   );
 };

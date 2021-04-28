@@ -1,16 +1,13 @@
 import "./Game.css";
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import GameLogic from '../GameLogic';
 import { Timer } from "./Timer";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-interface Props {
-
-}
-
-export const Game = (props: Props) => {
+export const Game = () => {
   const game = useRef(new GameLogic());
-  const [numbers, setNumbers] = useState(game.current.numbers);
+
+  const [numbers, setNumbers] = useState(game.current.generateNumbers());
   const [usedNumbers, setUsedNumbers] = useState<number[]>([]);
 
   const [gameStart, setGameStart] = useState(false);
@@ -26,24 +23,27 @@ export const Game = (props: Props) => {
 
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (isNaN(parseInt(event.key))) return;
-
-    setGameStart(true);
     let num = parseInt(event.key);
+
+    if (isNaN(num)) return;
+
+    if (!gameStart) setGameStart(true);
+
     if (numbers[0] === num) {
       let nums = numbers;
       let used = usedNumbers;
+
       used.push(nums.shift() ?? 0);
       setNumbers(nums);
       setUsedNumbers(used);
       setCorrect(correct + 1);
+
       return;
     }
     setIncorrect(incorrect + 1);
   };
 
   useEffect(() => {
-
     //accuracy
     let a = game.current.getAccuracy(correct, incorrect);
     setAccuracy(a);
@@ -51,16 +51,21 @@ export const Game = (props: Props) => {
     //npm
     let n = game.current.getNpm(correct, time);
     setNpm(n);
-
   }, [time, correct, incorrect]);
 
   return (
     <div>
-      <div className={`number-box ${isFocused ? "number-box-focused" : null}`} onClick={() => input.current!.focus()}>
+      <div
+        className={`number-box ${isFocused ? "number-box-focused" : null}`}
+        onClick={() => input.current!.focus()}
+      >
         <span className="done-numbers">
           {usedNumbers}
         </span>
-        <input type="text" ref={input} onKeyDown={handleKeyPress} className="invisible"
+        <input type="text"
+          ref={input}
+          onKeyDown={handleKeyPress}
+          className="invisible"
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
@@ -80,7 +85,13 @@ export const Game = (props: Props) => {
             colors={[
               ['#40916c', 1.00],
             ]}>
-            <Timer timeLeft={time} setTimeLeft={setTime} gameStart={gameStart} setGameStart={setGameStart} />
+            <Timer
+              timeLeft={time}
+              setTimeLeft={setTime}
+              gameStart={gameStart}
+              setGameStart={setGameStart}
+              style={{ fontSize: "2rem", color: "#2b2d42" }}
+            />
           </CountdownCircleTimer>
         </div>
 
