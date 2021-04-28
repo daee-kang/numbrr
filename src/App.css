@@ -23,3 +23,23 @@
   font-family: 'Courier New', Courier, monospace;
   text-decoration: none
 }
+
+div::selection {
+  background-color: #e63946;
+  color: whitesmoke;
+}
+
+div::-moz-selection {
+  background-color: #e63946;
+  color: whitesmoke;
+}
+
+span::selection {
+  background-color: #e63946;
+  color: whitesmoke;
+}
+
+span::-moz-selection {
+  background-color: #e63946;
+  color: whitesmoke;
+}
