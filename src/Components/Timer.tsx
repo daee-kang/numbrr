@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { TimerSettings, useTimer } from 'react-timer-hook'
+import React, { useEffect, useState } from 'react';
+import { TimerSettings, useTimer } from 'react-timer-hook';
 
 interface Props {
-  timeLeft: number
-  setTimeLeft: React.Dispatch<React.SetStateAction<number>>
-  gameStart: boolean
-  setGameStart: React.Dispatch<React.SetStateAction<boolean>>
+  timeLeft: number;
+  setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
+  gameStart: boolean;
+  setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart }: Props) => {
@@ -34,5 +34,5 @@ export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart }: Props)
 
   return (
     <span style={{ fontSize: "2rem", color: "#2b2d42" }}>{timeLeft}</span>
-  )
-}
+  );
+};

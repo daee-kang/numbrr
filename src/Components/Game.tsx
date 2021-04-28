@@ -1,6 +1,6 @@
-import "./Game.css"
-import React, { createRef, useEffect, useRef, useState } from 'react'
-import GameLogic from '../GameLogic'
+import "./Game.css";
+import React, { createRef, useEffect, useRef, useState } from 'react';
+import GameLogic from '../GameLogic';
 import { Timer } from "./Timer";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
@@ -28,7 +28,7 @@ export const Game = (props: Props) => {
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (isNaN(parseInt(event.key))) return;
 
-    setGameStart(true)
+    setGameStart(true);
     let num = parseInt(event.key);
     if (numbers[0] === num) {
       let nums = numbers;
@@ -40,7 +40,7 @@ export const Game = (props: Props) => {
       return;
     }
     setIncorrect(incorrect + 1);
-  }
+  };
 
   useEffect(() => {
 
@@ -52,7 +52,7 @@ export const Game = (props: Props) => {
     let n = game.current.getNpm(correct, time);
     setNpm(n);
 
-  }, [time, correct, incorrect])
+  }, [time, correct, incorrect]);
 
   return (
     <div>
@@ -110,5 +110,5 @@ export const Game = (props: Props) => {
 
 
     </div>
-  )
-}
+  );
+};
