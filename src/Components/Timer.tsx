@@ -5,11 +5,11 @@ interface Props {
   timeLeft: number;
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
   gameStart: boolean;
-  setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
+  setGameOver: React.Dispatch<React.SetStateAction<boolean>>;
   style?: React.CSSProperties
 }
 
-export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart, style }: Props) => {
+export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameOver, style }: Props) => {
 
   useEffect(() => {
     //https://stackoverflow.com/questions/57137094/implementing-a-countdown-timer-in-react-with-hooks
@@ -17,7 +17,7 @@ export const Timer = ({ timeLeft, setTimeLeft, gameStart, setGameStart, style }:
 
     // exit early when we reach 0
     if (!timeLeft) {
-      setGameStart(false);
+      setGameOver(true);
       return;
     }
 

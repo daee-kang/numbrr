@@ -24,8 +24,42 @@ export default class GameLogic {
     return (correct / (correct + incorrect)) * 100;
   };
 
-  getNpm = (correct: number, time: number) => {
+  getNpm = (correct: number, time?: number) => {
     //TO-DO: penalty??
     return correct;
   };
+
+  getEmoji = (correct: number) => {
+    if (correct < 30) {
+      return '⚰️'
+    } else if (correct < 70) {
+      return '🐢';
+    } else if (correct < 110) {
+      return '🚶‍♀️';
+    } else if (correct < 150) {
+      return '🐕';
+    } else if (correct < 200) {
+      return '🏇';
+    } else {
+      return '🐆'
+    }
+  }
+
+  getDescription = (correct: number) => {
+    if (correct < 20) {
+      return 'bro are you even alive?'
+    } else if (correct < 70) {
+      return 'Well... you type pretty slow, keep practicing.';
+    } else if (correct < 110) {
+      return 'Not bad, you are pretty average. It could be better!';
+    } else if (correct < 150) {
+      return `Okay, you're movin, I see you 👀, not fast yet but better than average.`;
+    } else if (correct < 200) {
+      return 'You are pretty fast at typing numbers, congratulations. You are one of the few with a unique talent of typing numbers.';
+    } else {
+      return 'Woah, you are insanely good at typing numbers for whatever reason.'
+    }
+  }
+
+
 };

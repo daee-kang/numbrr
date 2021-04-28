@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import GameLogic from '../GameLogic';
 import { Timer } from "./Timer";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { Score } from "./Score";
 
 export const Game = () => {
   const game = useRef(new GameLogic());
@@ -11,6 +12,7 @@ export const Game = () => {
   const [usedNumbers, setUsedNumbers] = useState<number[]>([]);
 
   const [gameStart, setGameStart] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   const [npm, setNpm] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
@@ -21,11 +23,15 @@ export const Game = () => {
   const [isFocused, setFocused] = useState(false);
   const input = React.useRef<HTMLInputElement>(null);
 
+  //we need a different key to "restart" the timer
+  const [timerKey, setTimerKey] = useState(`key${0}`);
+
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     let num = parseInt(event.key);
 
     if (isNaN(num)) return;
+    if (gameOver) return;
 
     if (!gameStart) setGameStart(true);
 
@@ -40,6 +46,7 @@ export const Game = () => {
 
       return;
     }
+    //incorrect
     setIncorrect(incorrect + 1);
   };
 
@@ -53,15 +60,48 @@ export const Game = () => {
     setNpm(n);
   }, [time, correct, incorrect]);
 
+  useEffect(() => {
+    if (!gameOver) return;
+
+    setGameStart(false);
+    console.log("done")
+  }, [gameOver])
+
+  const resetGame = () => {
+    setGameOver(false);
+    setGameStart(false);
+    setNpm(0);
+    setAccuracy(0);
+    setCorrect(0);
+    setIncorrect(0);
+    setTime(60);
+    setUsedNumbers([]);
+    setTimerKey(`key${Math.random() * 100000}`)
+    setNumbers(game.current.generateNumbers());
+  }
+
   return (
-    <div>
+    <div className="game">
+      {gameOver &&
+        <Score
+          correct={correct}
+          incorrect={incorrect}
+          gameLogic={game}
+          resetGame={resetGame}
+        />
+      }
+
       <div
-        className={`number-box ${isFocused ? "number-box-focused" : null}`}
+        className={`number-box 
+          ${isFocused ? "number-box-focused" : null}
+          ${gameOver ? "blur" : null}
+          `}
         onClick={() => input.current!.focus()}
       >
         <span className="done-numbers">
           {usedNumbers}
         </span>
+
         <input type="text"
           ref={input}
           onKeyDown={handleKeyPress}
@@ -75,21 +115,23 @@ export const Game = () => {
       </div>
 
       <div className={`meter-container ${isFocused ? "show" : "hide"}`}>
-        {/* change key to restart timer */}
         <div className="timer">
           <CountdownCircleTimer
+            key={timerKey}
             size={100}
             strokeWidth={8}
             isPlaying={gameStart}
             duration={60}
             colors={[
-              ['#40916c', 1.00],
+              ['#40916c', 0.8],
+              ['#ffd166', 0.1],
+              ['#d62828', 0.1]
             ]}>
             <Timer
               timeLeft={time}
               setTimeLeft={setTime}
               gameStart={gameStart}
-              setGameStart={setGameStart}
+              setGameOver={setGameOver}
               style={{ fontSize: "2rem", color: "#2b2d42" }}
             />
           </CountdownCircleTimer>
@@ -110,6 +152,17 @@ export const Game = () => {
         <div className="meter">
           <span className="box">
             <div className="center">
+              {incorrect}
+            </div>
+            <span className="subtitle">
+              missed
+            </span>
+          </span>
+        </div>
+
+        <div className="meter">
+          <span className="box">
+            <div className="center">
               {Math.trunc(accuracy)}
             </div>
             <span className="subtitle">
@@ -120,6 +173,6 @@ export const Game = () => {
       </div>
 
 
-    </div>
+    </div >
   );
 };
