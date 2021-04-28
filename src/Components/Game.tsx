@@ -56,7 +56,6 @@ export const Game = (props: Props) => {
 
   return (
     <div>
-
       <div className={`number-box ${isFocused ? "number-box-focused" : null}`} onClick={() => input.current!.focus()}>
         <span className="done-numbers">
           {usedNumbers}

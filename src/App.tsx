@@ -8,6 +8,11 @@ function App() {
         numbrr
       </div>
       <Game />
+      <div className="footer">
+        <a href=" https://github.com/daee-kang/numbrr">
+          made by daee kang 😎
+        </a>
+      </div>
     </div>
   );
 }

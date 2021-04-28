@@ -13,6 +13,7 @@
     background-color: white;
     box-shadow: 0 9px 24px rgb(0 0 0 / 2%), 0 9px 24px rgb(0 0 0 / 2%);
     transition: all 0.3s ease-in-out;
+    position: relative;
 }
 
 .number-box-focused {
@@ -40,7 +41,8 @@
     border-left: 1px solid #40916c;
     font-family: 'Colfax' ,sans-serif;
     padding-left: 10px;
-    color: #2b2d42
+    color: #2b2d42;
+    
 }
 
 .invisible {
