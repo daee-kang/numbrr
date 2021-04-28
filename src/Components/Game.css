@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+
+.number-box {
+    width: 800px;
+    height: 120px;
+    overflow-x: hidden;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 50px auto;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 9px 24px rgb(0 0 0 / 2%), 0 9px 24px rgb(0 0 0 / 2%);
+    transition: all 0.3s ease-in-out;
+}
+
+.number-box-focused {
+    box-shadow: 0 9px 24px rgb(0 0 0 / 8%), 0 9px 24px rgb(0 0 0 / 8%);
+    transform: scale(1.1, 1.1);
+
+}
+
+.done-numbers {
+    flex: 1;
+    color: #b7e4c7;
+    text-align: right;
+    overflow-x: hidden;
+    display: inline-block;
+    height: 20;
+    direction: rtl;
+    letter-spacing: 5px;
+    font-family: 'Colfax' ,sans-serif
+}
+
+.type-numbers {
+    flex: 1;
+    overflow-x: hidden;
+    letter-spacing: 5px;
+    border-left: 1px solid #40916c;
+    font-family: 'Colfax' ,sans-serif;
+    padding-left: 10px;
+    color: #2b2d42
+}
+
+.invisible {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.meter-container { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2b2d42;
+}
+
+.meter {
+    margin: 20px;
+}
+
+.box {
+    display: inline-block;
+    font-size: 2rem;
+}
+
+.center {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+
+.subtitle {
+    font-size: .8rem;
+    font-family: 'Orelega One', cursive;
+}
+
+.hide {
+    transform: scale(0.8, 0.8);
+    transition: all 0.3s ease-in-out;
+    margin-top: -25px;
+    opacity: 0;
+}
+
+.show {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.0, 1.0);
+    opacity: 100;
+}
+
+.timer {
+    margin-right: 20px;
+    margin-top: -35px;
+}

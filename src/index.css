@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&family=Orelega+One&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Calistoga', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f6f6f7;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
